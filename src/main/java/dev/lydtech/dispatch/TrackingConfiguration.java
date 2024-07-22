@@ -1,9 +1,9 @@
-package dev.lydtech.track;
+package dev.lydtech.dispatch;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import dev.lydtech.track.message.DispatchPreparing;
+import dev.lydtech.dispatch.message.DispatchPreparing;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.common.serialization.StringDeserializer;

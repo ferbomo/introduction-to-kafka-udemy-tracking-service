@@ -1,6 +1,6 @@
-package dev.lydtech.track.util;
+package dev.lydtech.dispatch.util;
 
-import dev.lydtech.track.message.DispatchPreparing;
+import dev.lydtech.dispatch.message.DispatchPreparing;
 
 import java.util.UUID;
 

@@ -1,8 +1,8 @@
-package dev.lydtech.track.service;
+package dev.lydtech.dispatch.service;
 
-import dev.lydtech.track.message.DispatchPreparing;
-import dev.lydtech.track.message.TrackingStatusUpdated;
-import dev.lydtech.track.util.TestEventData;
+import dev.lydtech.dispatch.message.DispatchPreparing;
+import dev.lydtech.dispatch.message.TrackingStatusUpdated;
+import dev.lydtech.dispatch.util.TestEventData;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.kafka.core.KafkaTemplate;

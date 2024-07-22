@@ -9,10 +9,10 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.fernandoboluda</groupId>
-	<artifactId>dispatch</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
-	<name>dispatch</name>
-	<description>Demo project for Spring Boot</description>
+	<artifactId>track</artifactId>
+	<version>0.1.0-SNAPSHOT</version>
+	<name>track</name>
+	<description>Tracking service assignment</description>
 	<properties>
 		<java.version>17</java.version>
 	</properties>
