@@ -6,7 +6,7 @@ import java.util.UUID;
 
 public class TestEventData {
 
-    public static DispatchPreparing buildDispatchPreparingEvent(UUID uuid, String string) {
+    public static DispatchPreparing buildDispatchPreparingEvent(UUID uuid) {
         return DispatchPreparing.builder()
                 .orderId(uuid)
                 .build();

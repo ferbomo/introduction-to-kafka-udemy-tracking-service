@@ -32,7 +32,7 @@ class TrackingServiceTest {
     void process_Success() throws Exception {
         when(kafkaProducerMock.send(anyString(), any(TrackingStatusUpdated.class))).thenReturn(mock(CompletableFuture.class));
 
-        DispatchPreparing testEvent = TestEventData.buildDispatchPreparingEvent(randomUUID(), randomUUID().toString());
+        DispatchPreparing testEvent = TestEventData.buildDispatchPreparingEvent(randomUUID());
         service.process(testEvent);
 
         verify(kafkaProducerMock, times(1)).send(eq(TRACKING_STATUS_TOPIC), any(TrackingStatusUpdated.class));
@@ -40,7 +40,7 @@ class TrackingServiceTest {
 
     @Test
     void testProcess_DispatchTrackingProducerThrowsException() {
-        DispatchPreparing testEvent = TestEventData.buildDispatchPreparingEvent(randomUUID(), randomUUID().toString());
+        DispatchPreparing testEvent = TestEventData.buildDispatchPreparingEvent(randomUUID());
         doThrow(new RuntimeException("dispatch tracking producer failure")).when(kafkaProducerMock).send(eq(TRACKING_STATUS_TOPIC), any(TrackingStatusUpdated.class));
 
         Exception exception = assertThrows(RuntimeException.class, () -> service.process(testEvent));
@@ -52,7 +52,7 @@ class TrackingServiceTest {
 
     @Test
     void testProcess_OrderDispatchedProducerThrowsException() {
-        DispatchPreparing testEvent = TestEventData.buildDispatchPreparingEvent(randomUUID(), randomUUID().toString());
+        DispatchPreparing testEvent = TestEventData.buildDispatchPreparingEvent(randomUUID());
         when(kafkaProducerMock.send(anyString(), any(TrackingStatusUpdated.class))).thenReturn(mock(CompletableFuture.class));
         doThrow(new RuntimeException("order dispatched producer failure")).when(kafkaProducerMock).send(eq(TRACKING_STATUS_TOPIC), any(TrackingStatusUpdated.class));
 

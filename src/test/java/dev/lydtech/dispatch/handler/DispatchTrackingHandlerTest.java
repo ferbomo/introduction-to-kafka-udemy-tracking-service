@@ -22,14 +22,14 @@ class DispatchTrackingHandlerTest {
 
     @Test
     void listen_Success() throws Exception {
-        DispatchPreparing testEvent = TestEventData.buildDispatchPreparingEvent(randomUUID(), randomUUID().toString());
+        DispatchPreparing testEvent = TestEventData.buildDispatchPreparingEvent(randomUUID());
         handler.listen(testEvent);
         verify(trackingServiceMock, times(1)).process(testEvent);
     }
 
     @Test
     void listen_ServiceThrowsException() throws Exception {
-        DispatchPreparing testEvent = TestEventData.buildDispatchPreparingEvent(randomUUID(), randomUUID().toString());
+        DispatchPreparing testEvent = TestEventData.buildDispatchPreparingEvent(randomUUID());
         doThrow(new RuntimeException("Service failure")).when(trackingServiceMock).process(testEvent);
 
         handler.listen(testEvent);
