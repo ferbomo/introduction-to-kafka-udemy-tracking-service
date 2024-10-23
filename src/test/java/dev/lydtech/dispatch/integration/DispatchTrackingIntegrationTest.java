@@ -2,6 +2,7 @@ package dev.lydtech.dispatch.integration;
 
 
 import dev.lydtech.dispatch.TrackingConfiguration;
+import dev.lydtech.dispatch.message.DispatchCompleted;
 import dev.lydtech.dispatch.message.DispatchPreparing;
 import dev.lydtech.dispatch.message.TrackingStatusUpdated;
 import dev.lydtech.dispatch.util.TestEventData;
@@ -24,6 +25,7 @@ import org.springframework.messaging.support.MessageBuilder;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ActiveProfiles;
 
+import java.time.LocalDateTime;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -85,9 +87,21 @@ public class DispatchTrackingIntegrationTest {
      * Send in an dispatchPreparing event and ensure the expected outbound event is emitted.
      */
     @Test
-    public void testDispatchTrackingFlow() throws Exception {
+    public void testDispatchTrackingFlowWithDispatchPreparing() throws Exception {
         DispatchPreparing dispatchPreparing = TestEventData.buildDispatchPreparingEvent(randomUUID());
         sendMessage(DISPATCH_TRACKING_TOPIC, dispatchPreparing);
+
+        await().atMost(1, TimeUnit.SECONDS).pollDelay(100, TimeUnit.MILLISECONDS)
+                .until(testListener.trackingStatusUpdatedCounter::get, equalTo(1));
+    }
+
+    /**
+     * Send in an dispatchCompleted event and ensure the expected outbound event is emitted.
+     */
+    @Test
+    public void testDispatchTrackingFlowWithDispatchCompleted() throws Exception {
+        DispatchCompleted dispatchCompleted = TestEventData.buildDispatchCompletedEvent(randomUUID(), LocalDateTime.now());
+        sendMessage(DISPATCH_TRACKING_TOPIC, dispatchCompleted);
 
         await().atMost(1, TimeUnit.SECONDS).pollDelay(100, TimeUnit.MILLISECONDS)
                 .until(testListener.trackingStatusUpdatedCounter::get, equalTo(1));

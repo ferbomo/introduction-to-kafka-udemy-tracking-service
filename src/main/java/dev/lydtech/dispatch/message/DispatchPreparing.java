@@ -14,4 +14,5 @@ import lombok.NoArgsConstructor;
 public class DispatchPreparing {
 
     UUID orderId;
+
 }

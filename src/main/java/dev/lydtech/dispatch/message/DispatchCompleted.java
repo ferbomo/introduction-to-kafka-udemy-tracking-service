@@ -1,6 +1,6 @@
 package dev.lydtech.dispatch.message;
 
-import dev.lydtech.dispatch.service.TrackingStatus;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -12,9 +12,9 @@ import java.util.UUID;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class TrackingStatusUpdated {
+public class DispatchCompleted {
 
     UUID orderId;
-    TrackingStatus trackingStatus;
+    String date;
 
 }
